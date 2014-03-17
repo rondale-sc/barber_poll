@@ -8,6 +8,6 @@ window.barberPoll = {
 (function() {
   barberPoll.routerInit = function(opts){
     barberPoll.router = new barberPoll.Routers.SurveyRouter({el: opts.el});
-    Backbone.history.start()
+    Backbone.history.start({pushState: true, hashChange: false})
   };
 })();

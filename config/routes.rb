@@ -4,4 +4,6 @@ BarberPoll::Application.routes.draw do
   end
 
   root 'surveys#new'
+
+  match '*path', to: 'surveys#new', via: [:get]
 end
