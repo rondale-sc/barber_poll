@@ -1,0 +1,8 @@
+%dl
+  %dt
+    %label{"for" => "question"} question
+  %dd
+    %input#survey_question{"name" => "question", "type" => "text"}
+  #dl#answers
+  %div.actions
+    %a.submit{"href"=>"#" } create survey

@@ -1,0 +1,4 @@
+%dt
+  %label{"for" => "answer {{index}}"} answer {{index}}
+%dd
+  %input{"type" => "text", "name" => "answer {{index}}"}

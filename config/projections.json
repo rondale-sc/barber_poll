@@ -1,0 +1,11 @@
+{
+  "app/representers/*_representer.rb": {
+    "command": ["representer"],
+    "alternate": "spec/representers/%s_representer_spec.rb",
+    "template": "module %SRepresenter\n\tinclude Roar::Representer::JSON\n\tinclude Roar::Representer::Feature::Hypermedia\nend"
+  },
+  "app/assets/javascripts/templates/*.hamlbars": {
+    "command": "template"
+  }
+}
+

@@ -1,0 +1,15 @@
+!!!
+%html(lang="en-US")
+  %head
+    %title Barber Poll
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    %header
+      .roof1
+      .roof3
+        %h1 Barber Poll
+      .roof1
+    %main
+      = yield

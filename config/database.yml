@@ -1,0 +1,16 @@
+development:
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  database: barber_poll
+  pool: 5
+
+test: &test
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  database: barber_poll_test
+  pool: 5
+
+cucumber:
+  <<: *test
