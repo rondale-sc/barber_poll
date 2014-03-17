@@ -2,12 +2,18 @@
   'use strict';
 
   barberPoll.Views.ResultContainerView = Backbone.View.extend({
+    template: JST['result'],
     initialize: function(opts){
       this.model = new barberPoll.Models.Survey({id: parseInt(opts.id)});
       this.fetch()
     },
     render: function(){
-      this.$el.html("Hello");
+      this.$el.html(this.template(this.model.attributes));
+      this.model.answers().forEach(this.renderAnswer, this);
+    },
+    renderAnswer: function(model) {
+      var view = new barberPoll.Views.ResultAnswerView({model: model});
+      this.$el.find('#answers').append(view.render());
     },
     fetch: function(){
       var self = this;
@@ -22,6 +28,13 @@
     }
   });
 
+  barberPoll.Views.ResultAnswerView = Backbone.View.extend({
+    template: JST['result_answer'],
+    render: function(){
+      return this.$el.html(this.template(this.model.attributes));
+    }
+  });
+
   barberPoll.Views.VoteContainerView = Backbone.View.extend({
     template: JST['vote'],
     initialize: function(opts) {
@@ -31,7 +44,8 @@
     events: {
       "click a.submit": "save"
     },
-    save: function(){
+    save: function(e){
+      e.preventDefault();
       this.model.save(this.model.attributes, {
         success: function(model){
           barberPoll.router.navigate(model.id.toString() + "/r", {trigger: true});
@@ -50,11 +64,8 @@
       });
     },
     render: function(){
-      var self = this;
       this.$el.html(this.template(this.model.attributes));
-      $.each(self.model.answers().models, function(index, model) {
-        self.renderAnswer(model);
-      });
+      this.model.answers().forEach(this.renderAnswer, this);
       return this;
     },
     renderAnswer: function(model) {
