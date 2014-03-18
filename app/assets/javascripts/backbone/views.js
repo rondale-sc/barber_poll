@@ -19,9 +19,7 @@
       var self = this;
       this.model.fetch({
         success: function(model,response) {
-          $.each(response.answers, function(index, item) {
-            self.model.answers().add(item);
-          });
+          self.model.answers().add(response.answers);
           self.render();
         }
       });
@@ -56,14 +54,13 @@
       var self = this;
       this.model.fetch({
         success: function(model,response) {
-          $.each(response.answers, function(index, item) {
-            self.model.answers().add(item);
-          });
+          self.model.answers().add(response.answers);
           self.render();
         }
       });
     },
     render: function(){
+      var self = this;
       this.$el.html(this.template(this.model.attributes));
       this.model.answers().forEach(this.renderAnswer, this);
       return this;
