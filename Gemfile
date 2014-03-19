@@ -26,7 +26,7 @@ end
 
 group :test do
   gem 'launchy'
-  gem 'poltergeist'
+  gem "capybara-webkit"
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
