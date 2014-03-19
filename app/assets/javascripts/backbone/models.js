@@ -25,6 +25,9 @@
   });
 
   barberPoll.Models.Answer = Backbone.Model.extend({
+    initialize: function(){
+      this.setColor();
+    },
     abbreviatedAttributes: function(){
       return {
         "answer_text": this.get("answer_text"),
@@ -34,6 +37,12 @@
     },
     hasAnswerText: function(){
       return !!this.get('answer_text')
+    },
+    setColor: function(){
+      this.set('color', this.colorGenerator());
+    },
+    colorGenerator: function(){
+      return '#'+Math.random().toString(16).substr(-6);
     }
   });
 

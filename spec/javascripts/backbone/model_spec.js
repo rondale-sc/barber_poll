@@ -33,10 +33,40 @@ describe("barberPoll.Models.Answer", function(){
   beforeEach(function(){
     answer = new barberPoll.Models.Answer();
   });
+
   describe("hasAnswerText", function(){
     it("is true when answer text is present", function(){
       answer.set("answer_text", "Foo");
       expect(answer.hasAnswerText()).toBe(true);
+    });
+  });
+
+  describe("setColor", function(){
+    it("sets color to the output from colorGenerator", function(){
+      spyOn(answer, 'colorGenerator').andCallFake(function(){
+        return 'Foo';
+      });
+      answer.setColor();
+
+      expect(answer.get('color')).toEqual('Foo');
+    });
+  });
+
+  describe("abbreviatedAttributes", function(){
+    it("returns an formatted object for consumption by backend", function(){
+      var answer = new barberPoll.Models.Answer({
+        answer_text: "Blue",
+        selected: true,
+        id: 1
+      });
+
+      var results = {
+        answer_text: "Blue",
+        selected: true,
+        id: 1
+      };
+
+      expect(answer.abbreviatedAttributes()).toEqual(results);
     });
   });
 });

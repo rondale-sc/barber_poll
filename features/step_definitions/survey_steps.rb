@@ -33,6 +33,6 @@ end
 
 Then /^I should see the answer I voted for counted$/ do
   within(:xpath, '//li[contains(., "Red")]') do
-    expect(page.body).to have_content("(100%)")
+    expect(page.body).to have_content("100%")
   end
 end

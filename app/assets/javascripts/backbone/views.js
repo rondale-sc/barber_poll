@@ -1,6 +1,25 @@
 (function(){
   'use strict';
 
+  barberPoll.Views.PieChartView = Backbone.View.extend({
+    initialize: function(){
+      this.$el.html(this.template());
+    },
+    template: JST['pie_chart'],
+    context: function(){
+      return this.$('#pieChart').get(0).getContext("2d");
+    },
+    chart: function(){
+      new Chart(this.context()).Pie(
+        this.model.answers().dataForPieChart()
+      );
+    },
+    render: function(){
+      this.chart();
+      return this;
+    }
+  });
+
   barberPoll.Views.ResultContainerView = Backbone.View.extend({
     template: JST['result'],
     initialize: function(opts){
@@ -9,8 +28,13 @@
       this.fetch()
     },
     render: function(){
+      var pie = new barberPoll.Views.PieChartView({model: this.model});
+
       this.$el.html(this.template(this.presenter()));
       this.model.answers().forEach(this.renderAnswer, this);
+
+      this.$el.find('#pie').append(pie.render().$el);
+      return this;
     },
     renderAnswer: function(model) {
       var view = new barberPoll.Views.ResultAnswerView({model: model});

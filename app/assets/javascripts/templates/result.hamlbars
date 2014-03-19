@@ -4,3 +4,5 @@
 
 %div.total
   {{ totalVotes }} Votes
+
+#pie
