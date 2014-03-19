@@ -1,9 +1,8 @@
 require 'cucumber/rails'
-require 'capybara/poltergeist'
 ActionController::Base.allow_rescue = false
 
 Capybara.default_selector = :css
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :webkit
 
 begin
   DatabaseCleaner.strategy = :transaction
