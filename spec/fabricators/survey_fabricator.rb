@@ -5,3 +5,12 @@ Fabricator :survey do
     survey.answers << Fabricate(:answer)
   end
 end
+
+Fabricator :favorite_color_survey, class_name: :survey do
+  question "What is your favorite color?"
+
+  after_build do |survey|
+    survey.answers << Fabricate(:answer, answer_text: "Blue")
+    survey.answers << Fabricate(:answer, answer_text: "Red")
+  end
+end

@@ -83,7 +83,7 @@
       this.$el.find('input').prop('checked', this.model.get('selected'));
     },
     events: {
-      "click input": "setSelection"
+      "change input": "setSelection"
     },
     render: function(){
       return this.$el.html(this.template(this.model.attributes));
