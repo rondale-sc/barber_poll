@@ -16,7 +16,7 @@
       var answersAttributes = { "answers_attributes":
         this.answers().map(function(model) {
           if(model.hasAnswerText()) {
-            return _.clone(model.attributes)
+            return _.clone(model.abbreviatedAttributes());
           }
         })
       };
@@ -25,6 +25,13 @@
   });
 
   barberPoll.Models.Answer = Backbone.Model.extend({
+    abbreviatedAttributes: function(){
+      return {
+        "answer_text": this.get("answer_text"),
+        "selected": this.get("selected"),
+        "id": this.id
+      };
+    },
     hasAnswerText: function(){
       return !!this.get('answer_text')
     }
