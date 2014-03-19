@@ -1,1 +1,1 @@
-{{ answer_text }} ( {{ count }} )
+{{ answer_text }} Votes {{ count }} ({{percentage}})

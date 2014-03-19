@@ -1,5 +1,5 @@
 %div#survey_question
   {{ question }}
-%div#answers
+%ol#answers
 %div.actions
   %a.submit{"href"=>"#" } Vote

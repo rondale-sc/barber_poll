@@ -1,3 +1,6 @@
 %div#survey_question
   {{ question }}
-%div#answers
+%ol#answers
+
+%div.total
+  {{ totalVotes }} Votes

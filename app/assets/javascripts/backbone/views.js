@@ -4,16 +4,23 @@
   barberPoll.Views.ResultContainerView = Backbone.View.extend({
     template: JST['result'],
     initialize: function(opts){
-      this.model = new barberPoll.Models.Survey({id: parseInt(opts.id)});
+      window.survey = this.model = new barberPoll.Models.Survey({id: parseInt(opts.id)});
+      this.listenTo(this.model.answers(), 'change:percentage', this.render);
       this.fetch()
     },
     render: function(){
-      this.$el.html(this.template(this.model.attributes));
+      this.$el.html(this.template(this.presenter()));
       this.model.answers().forEach(this.renderAnswer, this);
     },
     renderAnswer: function(model) {
       var view = new barberPoll.Views.ResultAnswerView({model: model});
       this.$el.find('#answers').append(view.render());
+    },
+    presenter: function(){
+      var formatted = {
+        totalVotes: this.model.answers().totalVotes()
+      }
+      return _.extend({}, this.model.attributes,formatted);
     },
     fetch: function(){
       var self = this;
@@ -28,8 +35,21 @@
 
   barberPoll.Views.ResultAnswerView = Backbone.View.extend({
     template: JST['result_answer'],
+    tagName: "li",
+    initialize: function(){
+      this.listenTo(this.model, 'change:percentage', this.render);
+    },
     render: function(){
-      return this.$el.html(this.template(this.model.attributes));
+      return this.$el.html(this.template(this.presenter()));
+    },
+    presenter: function(){
+      var formatted = {
+        percentage: this.formattedPercentage()
+      }
+      return _.extend({}, this.model.attributes,formatted);
+    },
+    formattedPercentage: function() {
+      return Math.round(this.model.get('percentage') * 100) + "%";
     }
   });
 
@@ -76,6 +96,7 @@
 
   barberPoll.Views.VoteAnswerView = Backbone.View.extend({
     template: JST['vote_answer_text'],
+    tagName: "li",
     initialize: function(){
       this.listenTo(this.model, 'change', this.updateCheckboxEl);
     },
