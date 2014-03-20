@@ -6,13 +6,27 @@
       this.$el.html(this.template());
     },
     template: JST['pie_chart'],
-    context: function(){
-      return this.$('#pieChart').get(0).getContext("2d");
+    data: function(){
+      return this.model.answers().dataForPieChart();
     },
     chart: function(){
-      new Chart(this.context()).Pie(
-        this.model.answers().dataForPieChart()
-      );
+      var self = this;
+      nv.addGraph(function() {
+        var chart = nv.models.pieChart()
+            .x(function(d) { return d.label })
+            .y(function(d) { return d.value })
+            .labelType("percent")
+            .showLegend(true)
+            .showLabels(true);
+
+          d3.select("#chart svg")
+            .datum(self.data())
+            .transition().duration(0)
+            .call(chart);
+
+        return chart;
+      });
+
     },
     render: function(){
       this.chart();

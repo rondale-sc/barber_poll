@@ -31,7 +31,7 @@
       return this.map(function(model) {
         return {
           "value": model.get('count'),
-          "color": model.get('color')
+          "label": model.get('answer_text')
         }
       });
     }

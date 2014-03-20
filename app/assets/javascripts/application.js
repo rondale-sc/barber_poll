@@ -11,9 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require d3.v3.min
+//= require nv.d3
 //= require underscore
 //= require backbone
-//= require Chart
 //= require handlebars.runtime
 //= require handlebars
 //= require_tree ./templates
