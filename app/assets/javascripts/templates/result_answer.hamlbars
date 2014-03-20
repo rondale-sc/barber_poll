@@ -1,2 +1,4 @@
-{{ answer_text }} {{ count }} votes
-%span ({{percentage}})
+{{ answer_text }} {{ count }}
+%small
+  votes
+  %span ({{percentage}})
