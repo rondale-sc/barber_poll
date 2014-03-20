@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "2.1.1"
+
 gem 'rails', '4.0.3'
 gem 'pg'
 
@@ -9,7 +11,6 @@ gem 'decent_exposure'
 
 gem 'roar-rails'
 
-gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -17,6 +18,8 @@ gem 'bourbon'
 
 gem 'fabrication'
 gem 'ffaker'
+
+gem 'thread_safe', '0.2.0'
 
 group :development, :test do
   gem 'pry-rails'
@@ -30,3 +33,5 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
+
+gem 'rails_12factor', group: :production
