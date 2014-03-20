@@ -52,7 +52,7 @@
     },
     renderAnswer: function(model) {
       var view = new barberPoll.Views.ResultAnswerView({model: model});
-      this.$el.find('#answers').append(view.render());
+      this.$el.find('.result_answers').append(view.render());
     },
     presenter: function(){
       var formatted = {
@@ -128,7 +128,7 @@
         model: model,
         collection: this.model.answers()
       });
-      this.$el.find('#answers').append(answerView.render());
+      this.$el.find('.vote_answers').append(answerView.render());
     }
   });
 

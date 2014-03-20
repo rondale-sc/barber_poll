@@ -1,2 +1,2 @@
-%span{ "style" => "color: {{color}}" } {{percentage}} -
-{{ answer_text }} ( Votes {{ count }} )
+{{ answer_text }} {{ count }} votes
+%span ({{percentage}})

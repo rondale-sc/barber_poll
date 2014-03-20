@@ -1,4 +1,4 @@
-@import 'bourbon', 'whitespace_reset', '_cask', 'barber_header'
+@import 'bourbon', 'whitespace_reset', '_cask', 'barber_header', 'nv.d3', 'topcoat_checkbox', 'form'
 
 $beige: #fefaed
 $outline: #344960
@@ -38,3 +38,33 @@ header
 #survey_new
   max-width: 800px
   margin: 0 auto
+
+#chart
+  height: 400px
+  width: 400px
+
+.vote_container ol
+  margin-bottom: 10px
+  li
+    margin: 0 0 3px 0
+
+.result_container
+  width: 350px
+  float: left
+  ol
+    list-style: square outside none
+    list-style-position: inside
+    margin-bottom: 10px
+
+.result_question, .vote_question
+  font-size: 24px
+  font-weight: bold
+  margin-bottom: 10px
+
+.result_answers
+  span
+    font-style: italic
+
+#pie
+  float: left
+  width: 350px

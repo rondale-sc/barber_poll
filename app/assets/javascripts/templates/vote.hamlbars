@@ -1,5 +1,6 @@
-%div#survey_question
-  {{ question }}
-%ol#answers
-%div.actions
-  %a.submit{"href"=>"#" } Vote
+%div.vote_container
+  %div.vote_question
+    {{ question }}
+  %ol.vote_answers
+  %div.actions
+    %a.submit{"href"=>"#" } Vote

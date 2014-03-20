@@ -1,8 +1,10 @@
-%div#survey_question
-  {{ question }}
-%ol#answers
+%div.result_container
+  %div.result_question
+    {{ question }}
 
-%div.total
-  {{ totalVotes }} Votes
+  %ol.result_answers
+
+  %div.result_total
+    Total: {{ totalVotes }}
 
 #pie

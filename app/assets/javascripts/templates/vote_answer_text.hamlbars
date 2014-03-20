@@ -1,3 +1,4 @@
-%p<
-  %input{"type" => "checkbox"}
+%label(class="topcoat-checkbox" for="{{answer_text}}")
+  %input(type="checkbox" id="{{answer_text}}")
+    %div(class="topcoat-checkbox__checkmark" type="checkbox")
   {{ answer_text }}

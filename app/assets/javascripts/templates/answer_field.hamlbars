@@ -1,4 +1,2 @@
-%dt
-  %label{"for" => "answer {{index}}"} answer {{index}}
-%dd
-  %input{"type" => "text", "name" => "answer {{index}}"}
+%li
+  %input(type="text" name="answer_{{index}}" placeholder="Answer {{index}}")

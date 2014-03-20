@@ -1,8 +1,9 @@
-%dl
-  %dt
-    %label{"for" => "question"} question
-  %dd
-    %input#survey_question{"name" => "question", "type" => "text"}
-  #ol#answers
-  %div.actions
-    %a.submit{"href"=>"#" } create survey
+%form
+  %fieldset.left
+    %h2 Create Your Poll
+    %ul
+      %li
+        %input#survey_question(name="question" type ="text" placeholder="Ask your question here!")
+      #ul#answers
+      %div.actions
+        %a.submit(href="#") Create Survey
