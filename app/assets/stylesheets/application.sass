@@ -6,6 +6,24 @@ $blue2: #94bed3
 $red: #f47067
 $white: #fcf9f1
 
+= button
+  position: relative
+  background: saturate($outline + #111, 5%)
+  padding: 10px 30px
+  display: inline
+  max-width: 300px
+  text-align: center
+  text-decoration: none
+  color: #fff
+  -webkit-transition: background-color .2s
+  font-size: 22px
+  cursor: pointer
+  &:hover
+    background: saturate($outline + #191919, 10%)
+  +mobile
+    padding: 10px
+    font-size: 20px
+
 body
   margin: 0 auto
   max-width: 800px
@@ -35,6 +53,9 @@ header
     h1
       font-size: 60px
 
+a.submit
+  +button
+
 #survey_new
   max-width: 800px
   margin: 0 auto
@@ -44,7 +65,7 @@ header
   width: 400px
 
 .vote_container ol
-  margin-bottom: 10px
+  margin-bottom: 15px
   li
     margin: 0 0 3px 0
 
