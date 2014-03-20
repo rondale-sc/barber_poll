@@ -1,2 +1,3 @@
 %li
+  %label(for="answer_{{index}}")
   %input(type="text" name="answer_{{index}}" placeholder="Answer {{index}}")

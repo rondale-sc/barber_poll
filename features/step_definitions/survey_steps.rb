@@ -11,13 +11,18 @@ end
 Then(/^I fill in the survey form$/) do
   within("#survey_new") do
     fill_in "question", with: "Favorite Color?"
-    fill_in "answer 1", with: "Blue"
-    fill_in "answer 2", with: "Red"
+    fill_in "answer_1", with: "Blue"
+    fill_in "answer_2", with: "Red"
   end
 end
 
 When(/^I vote for red$/) do
-  find(:xpath, '//p[contains(.,"Red")]/input').click
+  # kinda gnarly work around because of the pseudo element overlay
+  # causing capybara to bark (overlapping element error) at a normal click
+  page.execute_script("""
+    $('input').last().click()
+  """)
+
   click_link "Vote"
 end
 

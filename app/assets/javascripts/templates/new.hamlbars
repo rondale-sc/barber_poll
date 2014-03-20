@@ -3,6 +3,7 @@
     %h2 Create Your Poll
     %ul
       %li
+        %label(for="question")
         %input#survey_question(name="question" type ="text" placeholder="Ask your question here!")
       #ul#answers
       %div.actions
