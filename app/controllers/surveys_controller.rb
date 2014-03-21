@@ -9,7 +9,7 @@ class SurveysController < ApplicationController
     if survey.save
       render json: survey, status: 201
     else
-      render json: { errors: survey.errors }, status: 400
+      render json: { errors: survey.errors.full_messages }, status: 400
     end
   end
 
@@ -17,7 +17,7 @@ class SurveysController < ApplicationController
     if answer_incrementer.save
       render json: {}, status: 200
     else
-      render json: {}, status: 400
+      render json: ["You are unable to vote again on this poll."], status: 400
     end
   end
 

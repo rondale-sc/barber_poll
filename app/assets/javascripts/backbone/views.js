@@ -94,6 +94,7 @@
   barberPoll.Views.VoteContainerView = Backbone.View.extend({
     template: JST['vote'],
     initialize: function(opts) {
+      this.$flash = $('.flash');
       this.model = new barberPoll.Models.Survey({id: parseInt(opts.id)});
       this.fetch();
     },
@@ -102,9 +103,13 @@
     },
     save: function(e){
       e.preventDefault();
+      var self = this;
       this.model.save(this.model.attributes, {
         success: function(model){
           barberPoll.router.navigate(model.id.toString() + "/r", {trigger: true});
+        },
+        error: function(model,response,options){
+          self.renderErrors(response.responseJSON);
         }
       });
     },
@@ -122,6 +127,12 @@
       this.$el.html(this.template(this.model.attributes));
       this.model.answers().forEach(this.renderAnswer, this);
       return this;
+    },
+    renderErrors: function(errors) {
+      this.$flash.html(_.map(errors, function(error) {
+        return "<p>" + error + "</p>"
+      }));
+      setTimeout(_.bind(function() { this.$flash.html(''); }, this), 2000);
     },
     renderAnswer: function(model) {
       var answerView = new barberPoll.Views.VoteAnswerView({
@@ -162,6 +173,7 @@
     },
     initialize: function() {
       _.bindAll(this, 'renderAnswer');
+      this.$flash = $('.flash');
       this.model = new barberPoll.Models.Survey();
       this.listenTo(this.model.answers(), "add", this.renderAnswer);
     },
@@ -174,11 +186,21 @@
     },
     save: function(e) {
       e.preventDefault();
+      var self = this;
       this.model.save(null, {
         success: function(model){
           barberPoll.router.navigate(model.id.toString(), {trigger: true});
+        },
+        error: function(model,response,options){
+          self.renderErrors(response.responseJSON);
         }
       })
+    },
+    renderErrors: function(errors) {
+      this.$flash.html(_.map(errors, function(error) {
+        return "<p>" + error + "</p>"
+      }));
+      setTimeout(_.bind(function() { this.$flash.html(''); }, this), 2000);
     },
     renderAnswer: function(model) {
       var view = new barberPoll.Views.AnswerView({model: model});

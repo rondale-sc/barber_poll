@@ -24,6 +24,22 @@ $white: #fcf9f1
     padding: 10px
     font-size: 20px
 
+.flash
+  position: absolute
+  top: 0
+  left: 50%
+  margin-left: -250px
+  color: #fff
+  text-align: center
+  width: 500px
+  cursor: pointer
+  z-index: 100
+  font-size: 20px
+  p
+    background: lighten($outline, 20%)
+    padding: 20px
+    +transition(opacity 200ms)
+
 body
   margin: 0 auto
   max-width: 800px
