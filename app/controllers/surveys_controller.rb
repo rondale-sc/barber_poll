@@ -28,7 +28,7 @@ class SurveysController < ApplicationController
   private
 
   def answer_incrementer
-    AnswerIncrementer.new(survey_params[:answers_attributes])
+    AnswerIncrementer.new(survey_params[:answers_attributes], request.remote_ip)
   end
 
   def survey_params

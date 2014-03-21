@@ -10,6 +10,10 @@ rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
 
+After do |s|
+  $redis.flushdb
+end
+
 if(ENV['FAILFAST'])
   After do |s|
     Cucumber.wants_to_quit = true if s.failed?

@@ -16,3 +16,7 @@
 /tmp
 
 public/assets/*
+
+.env*
+
+dump.rdb
