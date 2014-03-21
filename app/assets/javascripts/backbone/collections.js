@@ -13,7 +13,9 @@
       var total = this.totalVotes();
 
       this.forEach(function(model){
-        model.set('percentage', (model.get('count') / total))
+        var count = model.get('count');
+        var percentage = (total == 0) ? total : (count / total);
+        model.set('percentage', percentage);
       });
     },
     totalVotes: function(){
