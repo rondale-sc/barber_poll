@@ -157,7 +157,8 @@
     template: JST['new'],
     events: {
       "blur #survey_question": "setText",
-      "click a.submit": "save"
+      "click a.submit": "save",
+      'click #permissiveVoting': 'setPermissiveVoting'
     },
     initialize: function() {
       _.bindAll(this, 'renderAnswer');
@@ -166,6 +167,10 @@
     },
     setText: function(e) {
       this.model.set('question', $(e.target).val());
+    },
+    setPermissiveVoting: function(e){
+      var $input = $(e.target);
+      this.model.set({permissive_voting: $input.is(':checked')});
     },
     save: function(e) {
       e.preventDefault();

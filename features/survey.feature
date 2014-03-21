@@ -7,6 +7,15 @@ Feature: Survey
     Then I see that my survey has been created
 
   @javascript
+  Scenario: User create a permissive survey
+    Given I am on the home page
+    When I fill in the survey form
+    And I check permissive voting
+    And I follow "Create Survey"
+    Then I see that my survey has been created
+    And I see that my survey has permissive voting
+
+  @javascript
   Scenario: User can vote on a survey
     Given 1 favorite color survey
     And I visit the vote page for that survey

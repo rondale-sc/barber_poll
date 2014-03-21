@@ -3,9 +3,13 @@ Then(/^I see that my survey has been created$/) do
   survey = Survey.last
   expect(survey.question).to eq("Favorite Color?")
   survey.answers.each do |answer|
-
     expect(["Blue", "Red"]).to include(answer.answer_text)
   end
+end
+
+Then(/^I see that my survey has permissive voting$/) do
+  survey = Survey.last
+  expect(survey.permissive_voting).to be(true)
 end
 
 Then(/^I fill in the survey form$/) do
@@ -40,4 +44,11 @@ Then /^I should see the answer I voted for counted$/ do
   within(:xpath, '//li[contains(., "Red")]') do
     expect(page.body).to have_content("100%")
   end
+end
+
+When(/^I check permissive voting$/) do
+  # forgive me
+  page.execute_script("""
+    $('#permissiveVoting').trigger('click')
+  """)
 end

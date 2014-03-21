@@ -6,5 +6,11 @@
         %label(for="question")
         %input#survey_question(name="question" type ="text" placeholder="Ask your question here!")
       #ul#answers
+      %li
+        %label(class="topcoat-checkbox" for="permissiveVoting")
+          %input(type="checkbox" id="permissiveVoting")
+            %div(class="topcoat-checkbox__checkmark" type="checkbox")
+          Allow Permissive Voting?
+
       %div.actions
         %a.submit(href="#") Create Survey
