@@ -8,7 +8,8 @@ describe Answer do
 
       context "When key is found in redis" do
         it "is false" do
-          allow($redis).to receive(:[]).with("127.0.0.1-#{survey.id}").and_return("true")
+          allow(answer).to receive(:voted_recently?).and_return(true)
+
 
           expect(answer.can_vote?("127.0.0.1")).to be(false)
         end
@@ -16,7 +17,7 @@ describe Answer do
 
       context "when key is not found in redis" do
         it "is true" do
-          allow($redis).to receive(:[]).with("127.0.0.1-#{survey.id}").and_return("false")
+          allow(answer).to receive(:voted_recently?).and_return(false)
           allow(answer).to receive(:register_vote)
 
           expect(answer.can_vote?("127.0.0.1")).to be(true)
@@ -29,7 +30,7 @@ describe Answer do
       let(:answer) { Fabricate(:answer, survey: survey) }
 
       it "is true" do
-        allow($redis).to receive(:[]).with("127.0.0.1-#{survey.id}").and_return("true")
+        allow(answer).to receive(:voted_recently?).and_return(true)
 
         expect(answer.can_vote?("127.0.0.1")).to be(true)
       end

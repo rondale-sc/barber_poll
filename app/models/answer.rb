@@ -1,24 +1,22 @@
 class Answer < ActiveRecord::Base
   belongs_to :survey
 
+  delegate :voted_recently?, :register_vote, to: :redis_cache
+
   def can_vote?(requestor_ip)
-    if voted_recently?(requestor_ip) && !survey.permissive_voting
+    key = voted_redis_key(requestor_ip)
+    if voted_recently?(key) && !survey.permissive_voting
       false
     else
-      register_vote(requestor_ip)
+      register_vote(key)
       true
     end
   end
 
   private
 
-  def voted_recently?(requestor_ip)
-    $redis[voted_redis_key(requestor_ip)] == "true"
-  end
-
-  def register_vote(requestor_ip)
-    $redis.set(voted_redis_key(requestor_ip), true)
-    $redis.expireat(voted_redis_key(requestor_ip), 2.hours.from_now.to_i)
+  def redis_cache
+    RedisCache.new
   end
 
   def voted_redis_key(requestor_ip)
