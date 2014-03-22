@@ -37,7 +37,7 @@
   barberPoll.Views.ResultContainerView = Backbone.View.extend({
     template: JST['result'],
     initialize: function(opts){
-      window.survey = this.model = new barberPoll.Models.Survey({id: parseInt(opts.id)});
+      this.model = new barberPoll.Models.Survey({id: parseInt(opts.id)});
       this.listenTo(this.model.answers(), 'change:percentage', this.render);
       this.fetch()
     },
