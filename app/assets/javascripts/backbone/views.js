@@ -64,6 +64,7 @@
       var self = this;
       this.model.fetch({
         success: function(model,response) {
+          self.model.answers().reset()
           self.model.answers().add(response.answers);
           self.render();
         }
