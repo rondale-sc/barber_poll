@@ -12,6 +12,9 @@
     answers: function() {
       return this._answers;
     },
+    socketListener: function(){
+      var socket = io.connect('<%= ENV['SOCKET_IO_SERVER_URL'] %>');
+    },
     toJSON: function() {
       var answersAttributes = { "answers_attributes":
         this.answers().map(function(model) {

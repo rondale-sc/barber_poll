@@ -1,5 +1,9 @@
+= content_for :head do
+  %script(src="#{ENV['SOCKET_IO_SERVER_URL']}/socket.io/socket.io.js")
+
 %section
   %header
     #survey_new
+
 :javascript
   barberPoll.routerInit({el: $('#survey_new')});
