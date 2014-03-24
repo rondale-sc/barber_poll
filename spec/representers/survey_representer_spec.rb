@@ -9,13 +9,11 @@ describe SurveyRepresenter do
     {
         id: survey.id,
         question: survey.question,
-        answers: [
-          {
-            id: answer.id,
-            answer_text: answer.answer_text,
-            count: answer.count
-          }
-        ]
+        answers: survey.answers.map {|a|
+          { id: a.id ,
+            answer_text: a.answer_text,
+            count: a.count }
+        }
       }.to_json
   end
 

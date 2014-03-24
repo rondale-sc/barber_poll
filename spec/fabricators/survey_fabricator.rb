@@ -1,12 +1,10 @@
 Fabricator :survey do
   question { Faker::HipsterIpsum.words(10).join(' ') }
 
-  after_build do |survey|
-    survey.answers << Fabricate(:answer)
-  end
+  answers(count: 2)
 end
 
-Fabricator :favorite_color_survey, class_name: :survey do
+Fabricator :favorite_color_survey, class_name: Survey do
   question "What is your favorite color?"
 
   after_build do |survey|
