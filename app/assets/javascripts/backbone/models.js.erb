@@ -14,6 +14,14 @@
     },
     socketListener: function(){
       var socket = io.connect('<%= ENV['SOCKET_IO_SERVER_URL'] %>');
+      var self = this;
+
+      socket.on('answers', function(answers) {
+        self.answers().reset();
+        self.answers().add(answers);
+      });
+
+      socket.emit('subscribe', this.get('id'));
     },
     toJSON: function() {
       var answersAttributes = { "answers_attributes":
