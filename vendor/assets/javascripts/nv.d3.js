@@ -10675,7 +10675,7 @@ nv.models.pieChart = function() {
     , height = null
     , showLegend = true
     , color = nv.utils.defaultColor()
-    , tooltips = true
+    , tooltips = false
     , tooltip = function(key, y, e, graph) {
         return '<h3>' + key + '</h3>' +
                '<p>' +  y + '</p>'
