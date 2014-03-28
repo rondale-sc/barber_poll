@@ -10,7 +10,7 @@ class AnswerIncrementer
   def save
     answer = answer_class.find_by(id: selected_answer["id"])
     if answer && answer.can_vote?(requestor_ip)
-      answer.update_attributes(count: answer.count+1)
+      answer.vote
     else
       false
     end

@@ -13,7 +13,17 @@ class Answer < ActiveRecord::Base
     end
   end
 
+  def vote
+    update_attributes(count: count+1)
+  ensure
+    redis_cache.publish_answers(survey_id, answers_for_publication)
+  end
+
   private
+
+  def answers_for_publication
+    Answer.where(survey_id: survey_id).select(:answer_text, :id, :count)
+  end
 
   def redis_cache
     RedisCache.new

@@ -36,4 +36,18 @@ describe Answer do
       end
     end
   end
+
+  describe "vote" do
+    let(:answer) { Fabricate(:answer, count: 1) }
+    let(:redis_cache) { double(publish_answers: true) }
+
+    before do
+      allow(answer).to receive(:redis_cache).and_return(redis_cache)
+    end
+
+    it "increments the count by 1" do
+      answer.vote
+      expect(answer.reload.count).to eq(2)
+    end
+  end
 end

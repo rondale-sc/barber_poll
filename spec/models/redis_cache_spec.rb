@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'json'
 
 describe RedisCache do
   describe "voted_recently?" do
@@ -19,6 +20,28 @@ describe RedisCache do
 
       rc = described_class.new(cache: cache)
       rc.register_vote("thing")
+    end
+  end
+
+  describe "publish_answers" do
+    it "publishes" do
+      cache = double(:publish)
+      survey_id = 111
+      answers = [
+        double(id: 229, answer_text: "Foo", count: 1),
+        double(id: 227, answer_text: "Bar", count: 2),
+        double(id: 228, answer_text: "Baz", count: 5)
+      ]
+
+      expected = {
+        survey_id: survey_id,
+        answers: answers
+      }.to_json
+
+      expect(cache).to receive(:publish).with("survey_channel", expected)
+
+      rc = described_class.new(cache: cache)
+      rc.publish_answers(survey_id, answers)
     end
   end
 end
