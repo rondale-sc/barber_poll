@@ -13,7 +13,7 @@
       return this._answers;
     },
     socketListener: function(){
-      var socket = io.connect('<%= ENV['SOCKET_IO_SERVER_URL'] %>');
+      var socket = io.connect('<%= ENV['SOCKET_IO_SERVER_URL'] %>/');
       var self = this;
 
       socket.on('answers', function(answers) {
