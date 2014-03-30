@@ -10,7 +10,7 @@
         %label(class="topcoat-checkbox" for="permissiveVoting")
           %input(type="checkbox" id="permissiveVoting")
             %div(class="topcoat-checkbox__checkmark" type="checkbox")
-          Allow Permissive Voting?
+          Allow Voting From Same IP?
 
       %div.actions
         %a.submit(href="#") Create Survey
