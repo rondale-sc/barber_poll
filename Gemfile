@@ -18,6 +18,7 @@ gem 'fabrication'
 gem 'ffaker'
 gem 'thread_safe', '0.2.0'
 gem 'dotenv'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'pry-rails'
