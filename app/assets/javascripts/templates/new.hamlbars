@@ -4,7 +4,7 @@
     %ul
       %li
         %label(for="question")
-        %input#survey_question(name="question" type ="text" placeholder="Ask your question here!")
+        %textarea#survey_question(name="question" class='autosize' placeholder="Ask your question here!")
       #ul#answers
       %li
         %label(class="topcoat-checkbox" for="permissiveVoting")

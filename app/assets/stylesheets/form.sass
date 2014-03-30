@@ -8,7 +8,7 @@ form
       margin: 0 0 30px 0
   fieldset.left
     width: 65%
-  input[type=text]
+  textarea.autosize
     width: 100%
     border: 0
     padding: 10px
@@ -18,5 +18,8 @@ form
     border: solid 1px #ccc
     margin: 0 0 20px
     width: 300px
+    line-height: 20px
+    min-height: 40px
+    resize: none !important
     @include placeholder
       color: lighten(#aaa, 20%)

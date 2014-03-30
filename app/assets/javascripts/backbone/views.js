@@ -213,6 +213,7 @@
     },
     render: function(e){
       this.$el.html(this.template(this.model.toJSON()));
+      this.$('textarea').autosize();
       this.bootstrapInitialAnswers(4);
       return this;
     },
@@ -226,8 +227,8 @@
   barberPoll.Views.AnswerView = Backbone.View.extend({
     template: JST['answer_field'],
     events: {
-      'blur input': 'setText',
-      'keydown input': 'addNextAnswer'
+      'blur textarea': 'setText',
+      'keydown textarea': 'addNextAnswer'
     },
     addNextAnswer: function(e) {
       if(this.model.collection.last() == this.model) {
@@ -245,6 +246,7 @@
       this.$el.html(
         this.template({index: this.model.collection.length})
       );
+      this.$('textarea').autosize();
       return this;
     }
   });
