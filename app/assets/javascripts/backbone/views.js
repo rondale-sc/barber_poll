@@ -214,7 +214,7 @@
     render: function(e){
       this.$el.html(this.template(this.model.toJSON()));
       this.$('textarea').autosize();
-      this.bootstrapInitialAnswers(4);
+      this.bootstrapInitialAnswers(3);
       return this;
     },
     bootstrapInitialAnswers: function(count){
