@@ -17,7 +17,7 @@ gem 'bourbon'
 gem 'fabrication'
 gem 'ffaker'
 gem 'thread_safe', '0.2.0'
-gem 'dotenv'
+gem 'dotenv-rails', :groups => [:development, :test]
 gem 'redcarpet'
 
 group :development, :test do

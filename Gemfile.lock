@@ -56,7 +56,11 @@ GEM
     database_cleaner (1.2.0)
     decent_exposure (2.3.1)
     diff-lcs (1.2.5)
-    dotenv (0.10.0)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
+    dotenv-rails (0.11.1)
+      dotenv (= 0.11.1)
     erubis (2.7.0)
     execjs (2.0.2)
     fabrication (2.9.8)
@@ -203,7 +207,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   decent_exposure
-  dotenv
+  dotenv-rails
   fabrication
   ffaker
   haml-rails
